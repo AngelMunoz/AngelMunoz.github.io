@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "pages/home/home.ts",
+        "scripts/default.ts",
+        "scripts/navigator.ts",
+        "scripts/references.ts",
+        "scripts/typings/bootstrap/bootstrap.d.ts",
+        "scripts/typings/jquery/jquery.d.ts",
+        "scripts/typings/pouchdb/pouchdb.d.ts",
+        "scripts/typings/winjs/winjs.d.ts"
+    ],
+    "exclude": []
+}
