@@ -1,1 +1,2 @@
-# Archivos que se van a ignorar por git
+# Archivos a ignorar
+node_modules/

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- css-->
+    <link rel="stylesheet" type="text/css" href="dist/css/vendor/bootstrap/bootstrap-dark.css">
+    <link rel="stylesheet" href="dist/css/vendor/winjs/ui-dark.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <!-- scripts-->
+    <script type="text/javascript" src="dist/scripts/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="dist/scripts/vendor/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="dist/scripts/vendor/winjs/js/base.js"></script>
+    <script type="text/javascript" src="dist/scripts/vendor/winjs/js/ui.js"></script>
+  </head>
+  <body class="win-type-body">
+    <div id="app">
+      <div data-win-control="WinJS.UI.SplitView" data-win-options="{panePlacement:'right'}" class="splitView">
+        <!-- Pane area -->
+        <div>
+          <div class="header">
+            <button data-win-control="WinJS.UI.SplitViewPaneToggle" data-win-options="{ splitView: select('.splitView') }" class="win-splitviewpanetoggle"></button>
+            <div class="win-h3">
+              Future Navigation Pane :)  
+            </div>
+              
+          </div>
+          <div class="nav-commands">
+            <!--<div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Home', icon: 'home'}"></div>
+            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Favorite', icon: 'favorite'}"></div>
+            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Settings', icon: 'settings'}"></div>-->
+          </div>
+        </div>
+        <!-- Content area-->
+        <div data-win-control="WinJS.UI.ToolBar" class="basicToolbar">
+          <!-- Primary commands-->
+          <button data-win-control="WinJS.UI.Command" data-win-options="{ id:'cmdEdit', label:'edit', section:'primary', type:'button', icon: 'edit' }"></button>
+        </div>
+        <div class="contenttext">
+          <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: 'dist/pages/home/home.html'}" class="container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- TodoWinTS script references      -->
+    <script type="text/javascript" src="dist/references.js"></script>
+    <script type="text/javascript" src="dist/index.js"></script>
+    <script type="text/javascript" src="dist/navigator.js"></script>
+  </body>
+</html>
