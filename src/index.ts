@@ -1,3 +1,4 @@
+/// <reference path="./references.ts"/>
 module TsBlog {
     "use strict";
     declare var Application;
