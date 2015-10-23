@@ -1,6 +1,6 @@
 module TsBlog {
     'use strict';
-
+    declare var Application;
     var nav = WinJS.Navigation;
 
     WinJS.Namespace.define("Application", {
