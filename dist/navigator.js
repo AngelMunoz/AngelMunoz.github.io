@@ -1,5 +1,5 @@
-var TodoWinTs;
-(function (TodoWinTs) {
+var TsBlog;
+(function (TsBlog) {
     'use strict';
     var nav = WinJS.Navigation;
     WinJS.Namespace.define("Application", {
@@ -104,4 +104,4 @@ var TodoWinTs;
             }
         })
     });
-})(TodoWinTs || (TodoWinTs = {}));
+})(TsBlog || (TsBlog = {}));

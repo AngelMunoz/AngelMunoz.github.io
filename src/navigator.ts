@@ -1,4 +1,4 @@
-module TodoWinTs {
+module TsBlog {
     'use strict';
 
     var nav = WinJS.Navigation;

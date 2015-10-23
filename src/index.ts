@@ -1,4 +1,4 @@
-module TodoWinTs {
+module TsBlog {
     "use strict";
     declare var Application;
     var app = WinJS.Application;

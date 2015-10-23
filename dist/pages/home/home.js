@@ -1,6 +1,6 @@
 /// <reference path="../../references.ts"/>
-var TodoWinTs;
-(function (TodoWinTs) {
+var TsBlog;
+(function (TsBlog) {
     "use strict";
     WinJS.UI.Pages.define("dist/pages/home/home.html", {
         // This function is called whenever a user navigates to this page. It
@@ -10,4 +10,4 @@ var TodoWinTs;
             WinJS.UI.processAll();
         }
     });
-})(TodoWinTs || (TodoWinTs = {}));
+})(TsBlog || (TsBlog = {}));

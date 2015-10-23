@@ -19,18 +19,21 @@
         <div>
           <div class="header">
             <button data-win-control="WinJS.UI.SplitViewPaneToggle" data-win-options="{ splitView: select('.splitView') }" class="win-splitviewpanetoggle"></button>
-            <div class="title">Menu</div>
+            <div class="win-h3">
+              Future Navigation Pane :)  
+            </div>
+              
           </div>
           <div class="nav-commands">
-            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Home', icon: 'home'}"></div>
+            <!--<div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Home', icon: 'home'}"></div>
             <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Favorite', icon: 'favorite'}"></div>
-            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Settings', icon: 'settings'}"></div>
+            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Settings', icon: 'settings'}"></div>-->
           </div>
         </div>
         <!-- Content area-->
         <div data-win-control="WinJS.UI.ToolBar" class="basicToolbar">
           <!-- Primary commands-->
-          <button data-win-control="WinJS.UI.Command" data-win-options="{                id:'cmdEdit',                label:'edit',                section:'primary',                type:'button',                icon: 'edit'                }"></button>
+          <button data-win-control="WinJS.UI.Command" data-win-options="{ id:'cmdEdit', label:'edit', section:'primary', type:'button', icon: 'edit' }"></button>
         </div>
         <div class="contenttext">
           <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: 'dist/pages/home/home.html'}" class="container"></div>

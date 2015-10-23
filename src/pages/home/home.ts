@@ -1,5 +1,5 @@
 /// <reference path="../../references.ts"/>
-module TodoWinTs {
+module TsBlog {
     "use strict";
 
    WinJS.UI.Pages.define("dist/pages/home/home.html", {

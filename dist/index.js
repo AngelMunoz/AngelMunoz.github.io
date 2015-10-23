@@ -1,5 +1,5 @@
-var TodoWinTs;
-(function (TodoWinTs) {
+var TsBlog;
+(function (TsBlog) {
     "use strict";
     var app = WinJS.Application;
     var nav = WinJS.Navigation;
@@ -27,4 +27,4 @@ var TodoWinTs;
         app.sessionState.history = nav.history;
     };
     app.start();
-})(TodoWinTs || (TodoWinTs = {}));
+})(TsBlog || (TsBlog = {}));
