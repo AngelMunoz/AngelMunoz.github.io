@@ -1,3 +1,4 @@
+/// <reference path="./references.ts"/>
 var TsBlog;
 (function (TsBlog) {
     "use strict";
