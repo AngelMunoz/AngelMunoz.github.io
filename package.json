@@ -1,7 +1,7 @@
 {
   "name": "AngelMunoz.github.io",
-  "version": "0.0.0",
-  "author": "",
+  "version": "0.0.4",
+  "author": "AngelMunoz",
 
   "main": "./index.js",
 

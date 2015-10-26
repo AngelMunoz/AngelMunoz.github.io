@@ -47,14 +47,14 @@
   </div>
     </div>
   </div>
-  <div id="socialnavbar" data-win-control="WinJS.UI.NavBar" data-win-options="{ placement: 'bottom' }">
+  <div id="socialnavbar" data-win-control="WinJS.UI.NavBar" data-win-options="{ placement: 'bottom', oninvoked: bottomNav.navigation }">
     <div data-win-control="WinJS.UI.NavBarContainer">
-        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Tunaxor\'s Blog', icon: 'url(dist/icons/terminal7.png)' }"></div>
-        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Facebook', icon: 'url(dist/icons/facebook4.png)' }"></div>
-        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Twitter', icon: 'url(dist/icons/twitter2.png)' }"></div>
-        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'GitHub', icon: 'url(dist/icons/github19.png)' }"></div>
-        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'Skype', icon: 'url(dist/icons/video-call.png)' }"></div>
-        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ label: 'LinkedIn', icon: 'url(dist/icons/linkedin2.png)' }"></div>
+        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ id: 'blog', label: 'Tunaxor\'s Blog', icon: 'url(dist/icons/terminal7.png)' }"></div>
+        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ id: 'facebook', label: 'Facebook', icon: 'url(dist/icons/facebook4.png)' }"></div>
+        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ id: 'twitter', label: 'Twitter', icon: 'url(dist/icons/twitter2.png)' }"></div>
+        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ id: 'github', label: 'GitHub', icon: 'url(dist/icons/github19.png)' }"></div>
+        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ id: 'skype', label: 'Skype', icon: 'url(dist/icons/video-call.png)' }"></div>
+        <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{ id: 'linkedin', label: 'LinkedIn', icon: 'url(dist/icons/linkedin2.png)' }"></div>
     </div>
 </div>
   <!-- TodoWinTS script references      -->
