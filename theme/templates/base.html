@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		{% block title %} {{ SITE_NAME }} {% endblock %}
+	</title>
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css" type="text/css" /> 
+	{% if GOOGLE_ANALYTICS %}
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("{{GOOGLE_ANALYTICS}}");
+				pageTracker._trackPageview();
+				}
+			catch(err) {
+				console.log(err);
+			}
+		</script>
+	{% endif %}
+</head>
+<body>
+	<main>
+		<!-- main content (basically a wrapper) -->
+		<header>
+			<!-- Header of the website -->
+			{% block MainHeader %}
+				{# website's main header template #}
+			{% endblock %}
+			<nav>
+				<!-- Website Navigation bar -->
+				{% block MainNavbar %}
+					{# website's navbar template here #}
+				{% endblock %}
+			</nav>
+		</header>
+		<article>
+			<!-- main content of the site -->
+			<header>
+				 <!-- article's header -->
+				 {% block ArtHeader %}
+				 	{# article's header template
+					   should we say subtitle
+					   or anything similar
+					#}
+				 {% endblock %}
+			</header>
+			{% block ArtSidebarA %}
+				{# sidebar A template here #}
+				<!-- article's navigation area (navigate inside the document) -->
+			{% endblock %}
+			<section>
+				<!-- content of the article here -->
+				{% block Content %}
+					{# article's main content #}
+					<!-- article's main content area-->
+				{% endblock%}
+			</section>
+			{% block ArtSidebarB %}
+				{# sidebar B template here #}
+				<!-- article's optional extra navigation area-->
+			{% endblock %}
+			<footer>
+				<!-- article's footer content area -->
+				{% block ArtFooter %}
+					{# article's footer template #}
+				{% endblock %}
+			</footer>
+		</article>
+		<footer>
+			<!-- Footer for the website -->
+			{% block MainFooter %}
+				{# website's footer here #}
+			{% endblock %}
+		</footer>
+	</main>
+</body>
+</html>
