@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id="content">
+        {% block content_title %}
+        {% endblock %}
+        <div class="row">
+            <div class="col-xs-12">
+                <ol id="post-list" class="list-group">
+                    {% for article in articles_page.object_list %}
+                        <li class="list-group-item">
+                            <header class="list-group-item-heading"> <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2> </header>
+                            <div class="list-group-item-text">
+                                {{ article.summary }}
+                                <a class="btn " href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">Read more</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+     </div>
+    {% include 'pagination.html' %}
+    </section>
+{% endblock content %}

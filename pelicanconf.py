@@ -5,13 +5,12 @@ from __future__ import unicode_literals
 AUTHOR = u'Angel Munoz'
 SITENAME = u"AngelMunoz's Blog"
 SITESUBTITLE = u"Tunaxor's blog"
-SITEURL = 'http://angelmunoz.github.io/'
+SITEURL = 'http://angelmunoz.github.io'
 
 DISQUS_SITENAME = "tunaxorsblog"
 GITHUB_URL = "http://github.com/angelmunoz/angelmunoz.github.io"
 TWITTER_USERNAME = "Daniel_Tuna"
 
-PATH = 'content'
 
 # Languaje and locale options
 DEFAULT_LANG = u'en'
@@ -39,24 +38,23 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Twitter', 'http://twitter.com/Daniel_Tuna'),
+          ('Facebook', 'https://www.facebook.com/danieltunamunoz'),
+          ('G+', u'https://plus.google.com/+AngelDanielMuñozGonzalez'),
+          ('Github', 'https://github.com/AngelMunoz'),
+          ('linkedin', 'https://mx.linkedin.com/in/danieltuna'))
+
+
 
 DEFAULT_PAGINATION = 5
 
-DEFAULT_METADATA = {
-    'status': 'draft',
-}
-
-# Pygment options
-PYGMENTS_RST_OPTIONS = {
-    'linenos': 'table'
-    }
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
 PATH = 'content'
-STATIC_PATHS = ['static', 'downloads']
 ARTICLE_PATHS = ['blog']
 ARTICLE_SAVE_AS = '{date:%Y}/{slug}.html'
 ARTICLE_URL = '{date:%Y}/{slug}.html'
+
+# Theme options
+THEME = 'theme'
