@@ -1,0 +1,17 @@
+branches:
+  only:
+  - dev
+language: python
+python:
+- 2.7
+install:
+- pip install -r requirements.txt --use-mirrors
+script:
+- make html
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+env:
+  global:
+    secure: Z7ovJ5xG7qsWMtFItTLeZn3asxEs9an0BPZxFCCfHl4WevQYki53eMlVyl9Yd3b1MDS34aY81Ahs8Qlr4A1UCTEkA5T2RwfOioSYrpdIy8enEittLREUw52ka9Bg2UQaQ5ogJsRLyh93gP+H0AP5HeSfQXTgJqkdMjWsse93cv3sY2U4mMOk56Okxbe1rXBXoZPvBUUQfZ/+sfKrZNWMaA9GbpHl1qivF6w6r1sWTOhDJAwLAnFqrnD+Dr1V/rEdLhUT0seHhVQJIRF82NPV1/A2WHRZBt00xFoDkIUUxzt1BR7s2fsB7sEBm55FHzolcX64djgw5a/talVKqhUr1+wRF2xdDpsUCf2jqTxLcvHHyZtI9FhXeqy5p7PZFUpp1xlrtjMJKSRiIDqxfXA/b6LWwLpyYkBJ3CrvmkxF8iau5zQ5zoNBRCBCAWDWPr2l4IEMH074W4kdb92+k2BRtJvucY7UzXFExMRLKxmjRTFgpuDC5nJc44Zqg73hSBIsX38w+vaQKlh6Wm7JHApqWDlvScm7/55S9OYZSfERpFGc4xJIRJWSwP7XrwtYvbrS7DT8icC+kQu5uF6sqkqHPzf05I4zUwcZ3PRL2fNVYDjKy3xwgpfB1zoR+02s8m/zT7Y8gsCY6BA8UNcMVTr38WuudGypNrQKbqOIaQF3Uzk=
