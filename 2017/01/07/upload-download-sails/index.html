@@ -1,0 +1,626 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>File Upload/Download in SailsJS | Because of coding :)</title>
+    <meta name="author" content="Angel D. Munoz">
+    
+    <meta name="description" content="This is my Professional Blog">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="File Upload/Download in SailsJS"/>
+    <meta property="og:site_name" content="Tunaxor&#39;s Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Tunaxor&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="brown">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Tunaxor&#39;s Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Inicio
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Historial
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categorias
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Lectura
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            Acerca
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Busqueda
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav brown darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="https://avatars3.githubusercontent.com/u/8684875?v=3&amp;s=460" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Angel D. Munoz</p>
+                        <p class="desc">Fullstack Developer</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Inicio
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Historial
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categorias
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Lectura
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    Acerca
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Busqueda
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav brown darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Libraries/">
+                    Libraries <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/sails/">
+                    sails <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/sails/typescript/">
+                    typescript <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/sails/node/">
+                    node <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Reflections/">
+                    Reflections <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Busqueda</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper brown">
+        <span class="breadcrumb">Pagina Actual(Categorias)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/sails/">sails</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>File Upload/Download in SailsJS</h1>
+    
+
+
+            </div>
+            <time class="teal-link-context" datetime="2017-01-08T05:00:00.000Z"><a href="/2017/01/07/upload-download-sails/">2017-01-07</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/sails/" class="chip teal lighten-1">sails</a>
+        
+            <a href="/tags/controllers/" class="chip teal lighten-1">controllers</a>
+        
+            <a href="/tags/backend/" class="chip teal lighten-1">backend</a>
+        
+    </div>
+
+
+            <div class="toc teal-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Hello"><span class="section table-of-contents-text">Hello</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Hands-on"><span class="section table-of-contents-text">Hands on!</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#Bonus"><span class="section table-of-contents-text">Bonus</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry teal-link-context">
+                <h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello"></a>Hello</h1><p>Hello everyone today I bring you a quick post on <a href="https://sailsjs.org" target="_blank" rel="external">SailsJs</a> Upload/Download files <a href="https://sailsjs.org" target="_blank" rel="external">SailsJs</a> is a really good nodejs framework, which allows you to quickly setup a RESTful API with a controller and a model (yes that easy), yet it allows you to do classic server-side rendering for websites including custom actions, views and whatever you could expect in a classic web development,Also! did I mention it has integrated Websocket support? via <a href="http://socket.io/" target="_blank" rel="external">socket.io</a><br>It is a really powerful framework built on top of [express] if you haven’t checked it you should just go and try!</p>
+<h3 id="Hands-on"><a href="#Hands-on" class="headerlink" title="Hands on!"></a>Hands on!</h3><p>This post assumes you know how to connect to a database (either mysql, postgre or mongo or just disk)<br>and that you know how to access a route from the url<br>Let’s make a model and a controller for our Files <code>api/models/File.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * File.js</div><div class="line"> *</div><div class="line"> * @description :: <span class="doctag">TODO:</span> You might write a short summary of how this model works and what it represents here.</div><div class="line"> * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">tableName</span>: <span class="string">'files'</span>, <span class="comment">// entirely optional</span></div><div class="line">  attributes: &#123;</div><div class="line">    <span class="attr">filename</span>: &#123;</div><div class="line">      <span class="attr">type</span>: <span class="string">'string'</span>,</div><div class="line">      <span class="attr">required</span>: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">path</span>: &#123;</div><div class="line">      <span class="attr">type</span>: <span class="string">'string'</span>,</div><div class="line">      <span class="attr">required</span>: <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>now let’s create our controller<br><code>api/controllers</code> directory<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * FileController</div><div class="line"> *</div><div class="line"> * @description :: Server-side logic for managing Files</div><div class="line"> * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers</div><div class="line"> */</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>We can either do it by hand or using <code>sails</code> command tools<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sails generate api File</div></pre></td></tr></table></figure></p>
+<p>we now will add upload action<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * FileController</div><div class="line"> *</div><div class="line"> * @description :: Server-side logic for managing Files</div><div class="line"> * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers</div><div class="line"> */</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">upload</span>: <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    res.json(&#123;<span class="attr">message</span>: <span class="string">'yay!'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>and if you go to the <code>/file/upload</code> url you will see the next message:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">"message"</span>: <span class="string">"yay!"</span> &#125;</div></pre></td></tr></table></figure></p>
+<p>If everything is working well up to this point, let’s add some logic there<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">upload</span>: <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    req.file(<span class="string">'file'</span>) <span class="comment">// this is the name of the file in your multipart form</span></div><div class="line">      .upload(&#123;</div><div class="line">        <span class="comment">// optional</span></div><div class="line">        <span class="comment">// dirname: [SOME PATH TO SAVE IN A CUSTOM DIRECTORY]</span></div><div class="line">      &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, uploads</span>) </span>&#123;</div><div class="line">        <span class="comment">// try to always handle errors</span></div><div class="line">        <span class="keyword">if</span> (err) &#123; <span class="keyword">return</span> res.serverError(err) &#125;</div><div class="line">        <span class="comment">// uploads is an array of files uploaded </span></div><div class="line">        <span class="comment">// so remember to expect an array object</span></div><div class="line">        <span class="keyword">if</span> (uploads.length === <span class="number">0</span>) &#123; <span class="keyword">return</span> res.badRequest(<span class="string">'No file was uploaded'</span>) &#125;</div><div class="line">        <span class="comment">// if file was uploaded create a new registry</span></div><div class="line">        <span class="comment">// at this point the file is phisicaly available in the hard drive</span></div><div class="line">        File.create(&#123;</div><div class="line">          <span class="attr">path</span>: uploads[<span class="number">0</span>].fd,</div><div class="line">          <span class="attr">filename</span>: uploads[<span class="number">0</span>].filename,</div><div class="line">        &#125;).exec(<span class="function"><span class="keyword">function</span>(<span class="params">err, file</span>) </span>&#123;</div><div class="line">          <span class="keyword">if</span> (err) &#123; <span class="keyword">return</span> res.serverError(err) &#125;</div><div class="line">          <span class="comment">// if it was successful return the registry in the response</span></div><div class="line">          <span class="keyword">return</span> res.json(file)</div><div class="line">        &#125;)</div><div class="line">      &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>if everything goes fine, you should be able to send files now and both the files are uploaded<br>and the database registers where are those files</p>
+<p>now let’s do some downloads; In the same controller create a new action<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">upload</span>: <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    <span class="comment">// the logic for uploads</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">download</span>: <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    res.json(&#123;<span class="attr">message</span>: <span class="string">'yay!'</span>&#125;) <span class="comment">// let's first check that the route exists</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>navigate to <code>/file/download</code> and you should see that json message<br>since we were saving our uploads into our database we can just download our file<br>searching it by id or by name, let’s see<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">upload</span>: <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    <span class="comment">// the logic for uploads</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">download</span>: <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> fileID = req.param(<span class="string">'id'</span>) </div><div class="line">    <span class="comment">// gets the id either in urlencode, body or url query</span></div><div class="line">    File</div><div class="line">      .findOne(&#123; <span class="attr">id</span>: fileID &#125;)</div><div class="line">        .exec(<span class="function">(<span class="params">err, file</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">if</span> (err) &#123; <span class="keyword">return</span> res.serverError(err) &#125;</div><div class="line">          <span class="keyword">if</span> (!file) &#123; <span class="keyword">return</span> res.notFound() &#125;</div><div class="line">          <span class="comment">// we use the res.download function to download the file </span></div><div class="line">          <span class="comment">// and send a ok response</span></div><div class="line">          res.download(file.path, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err) &#123;</div><div class="line">              <span class="keyword">return</span> res.serverError(err)</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">              <span class="keyword">return</span> res.ok()</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">      &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>So that’s it! you can now upload and download files in sailsjs,<br>sails is very flexible in the way it handles things so if you need to customize<br>either the uploaded file’s name you can pass it in the <code>upload({})</code> method<br>as well as location.</p>
+<h3 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h3><p>Let’s register a custom route for our upload/download actions<br>in your <code>config/routes.js</code> file you can add custom routes and also change urls for existing ones</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports.routes = &#123;</div><div class="line">  <span class="string">'post /fileuploader'</span>: <span class="string">'FileController.upload'</span>,</div><div class="line">  <span class="string">'get /filedownloader/:id'</span>: <span class="string">'FileController.download'</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>the string <code>&#39;get /filedownloader/:id&#39;: &#39;FileController.download&#39;,</code> tells sails to only accept <code>GET</code> requests to the <code>/filedownloader/:id</code> route, which is maped to the download action inside FileController.js file <code>:id</code> ends up being the id param which we will use to find our file registry.<br>The same goes for <code>&#39;post /fileuploader&#39;: &#39;FileController.upload&#39;,</code> which will only accept posts in the <code>/fileuploader</code> url<br>maping our request to the upload action in FileController</p>
+<p>as you can see it’s pretty straight forward upload and download files in <a href="https://sailsjs.org" target="_blank" rel="external">SailsJS</a><br>I hope this helps anyone to understand file upload/download in sails; see you next time!<br>Have any comments!? leave them below.</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function() {
+                this.page.url = 'http://angelmunoz.github.io/2017/01/07/upload-download-sails/';
+                this.page.identifier = '2017/01/07/upload-download-sails/';
+            };
+            (function() {
+                var d = document,
+                    s = d.createElement('script');
+                s.src = '//tunaxorsblog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+        </noscript>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large teal">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect indigo" title="Regresar al inicio"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse green darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer brown darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="https://github.com/AngelMunoz" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://twitter.com/daniel_tuna" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://mx.linkedin.com/in/danieltuna" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+                
+                    <a class="social-link" href="aquacisterna" target="_blank">
+                        <i class="fa fa-2x fa-skype"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">Ligas</h5>
+                
+                    <a class="social-link" href="http://angelmunoz.github.io/" target="_blank">Blog</a>
+                
+                    <a class="social-link" href="https://github.com/AngelMunoz" target="_blank">GitHub</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright teal-link-context">
+        <div class="container">
+            © 2016 Angel D. Munoz, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('teal lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge teal"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-69125349-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

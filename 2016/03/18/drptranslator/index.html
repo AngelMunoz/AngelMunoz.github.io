@@ -1,0 +1,626 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>DRPTranslator | Because of coding :)</title>
+    <meta name="author" content="Angel D. Munoz">
+    
+    <meta name="description" content="This is my Professional Blog">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="DRPTranslator"/>
+    <meta property="og:site_name" content="Tunaxor&#39;s Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Tunaxor&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="brown">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Tunaxor&#39;s Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Inicio
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Historial
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categorias
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Lectura
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            Acerca
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Busqueda
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav brown darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="https://avatars3.githubusercontent.com/u/8684875?v=3&amp;s=460" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Angel D. Munoz</p>
+                        <p class="desc">Fullstack Developer</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Inicio
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Historial
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categorias
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Lectura
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    Acerca
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Busqueda
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav brown darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Libraries/">
+                    Libraries <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/sails/">
+                    sails <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/sails/typescript/">
+                    typescript <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/sails/node/">
+                    node <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Reflections/">
+                    Reflections <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Busqueda</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper brown">
+        <span class="breadcrumb">Pagina Actual(Categorias)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Libraries/">Libraries</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>DRPTranslator</h1>
+    
+
+
+            </div>
+            <time class="teal-link-context" datetime="2016-03-19T05:34:00.000Z"><a href="/2016/03/18/drptranslator/">2016-03-18</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Typescript/" class="chip teal lighten-1">Typescript</a>
+        
+            <a href="/tags/Javascript/" class="chip teal lighten-1">Javascript</a>
+        
+            <a href="/tags/Node/" class="chip teal lighten-1">Node</a>
+        
+    </div>
+
+
+            <div class="toc teal-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Hello-everyone"><span class="section table-of-contents-text">Hello everyone!</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Installation"><span class="section table-of-contents-text">Installation</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#DNA-gt-DNA"><span class="section table-of-contents-text">DNA -> DNA</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#DNA-gt-RNA"><span class="section table-of-contents-text">DNA -> RNA</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#DNA-gt-AA"><span class="section table-of-contents-text">DNA -> AA</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#RNA-gt"><span class="section table-of-contents-text">RNA -> ?</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry teal-link-context">
+                <h1 id="Hello-everyone"><a href="#Hello-everyone" class="headerlink" title="Hello everyone!"></a>Hello everyone!</h1><p>This time I come to you to give you a brief explanation of <a href="https://github.com/AngelMunoz/DRPTranslator" target="_blank" rel="external">DRPTranslator</a>, available in<br>the <a href="https://npmjs.com/package/drptranslator" target="_blank" rel="external">npm registry</a>.</p>
+<p>This is the first library I’ve written in my developer’s life it was quite interesting to develop and a great experience<br>so, <em>What is this library for?</em> this is aimed at a entry level of genetics say convert DNA sequences into RNA sequences or Aminoacid sequences.<br>this is based in the <a href="https://en.wikipedia.org/wiki/Central_dogma_of_molecular_biology" target="_blank" rel="external">Central Dogma of Molecular Biology</a>.<br>which basically explains how is possible for the nature to replicate itself an keep growing and evolving. when DNA replicates, there are certain phases Transcription and Translation, which is part of what this library is for.</p>
+<p>There are way more complex libraries for this in other languages, perhaps in Python or Java or even in F#, for the main purpose of this library is to help you build education software upon it, perhaps you have a friend or a colleague that are having or teaching this class and you find a handy way to use this library to build an app for them then Feel free to do so the library is MIT licensed so feel free to go.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Now with the good stuff to install this you can pull it directly from the npm registry save it as a dependency for your nodejs project!</p>
+<p><code>npm install --save drptranslator</code></p>
+<p>this library doesn’t have any hard dependency on node compoents so if you want to try it on a browser app, you can always use browserify or webpack.</p>
+<h3 id="DNA-gt-DNA"><a href="#DNA-gt-DNA" class="headerlink" title="DNA -&gt; DNA"></a>DNA -&gt; DNA</h3><p>If you have a DNA sequence that you want to get the complementary chain this is for you!<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DNA Sequence</span></div><div class="line"><span class="comment">// ATCGGCTAGCTAGCGCTAGCTAGAACGAGT</span></div><div class="line"><span class="keyword">var</span> drptranslator = <span class="built_in">require</span>(<span class="string">'drptranslator/drptranslator'</span>);</div><div class="line"><span class="keyword">var</span> DNATranslator = drptranslator.DNATranslator;</div><div class="line"><span class="keyword">var</span> dnaTrans = <span class="keyword">new</span> DNATranslator();</div><div class="line"><span class="keyword">var</span> complementaryDNA = dnaTrans.transDNAtoDNA(<span class="string">"ATCGGCTAGCTAGCGCTAGCTAGAACGAGT"</span>);</div><div class="line"><span class="built_in">console</span>.log(complementaryDNA);</div><div class="line"><span class="comment">// original     : ATCGGCTAGCTAGCGCTAGCTAGAACGAGT</span></div><div class="line"><span class="comment">// complementary: TAGCCGATCGATCGCGATCGATCTTGCTCA</span></div></pre></td></tr></table></figure></p>
+<h3 id="DNA-gt-RNA"><a href="#DNA-gt-RNA" class="headerlink" title="DNA -&gt; RNA"></a>DNA -&gt; RNA</h3><p>Now, let’s use the same DNA sequence to get the RNA complementary sequence which is called Translation in the Central Dogma of Molecular Biology<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> drptranslator = <span class="built_in">require</span>(<span class="string">'drptranslator/drptranslator'</span>);</div><div class="line"><span class="keyword">var</span> DNATranslator = drptranslator.DNATranslator;</div><div class="line"><span class="keyword">var</span> dnaTrans = <span class="keyword">new</span> DNATranslator();</div><div class="line"><span class="keyword">var</span> complementaryDNA = dnaTrans.transDNAtoRNA(<span class="string">"ATCGGCTAGCTAGCGCTAGCTAGAACGAGT"</span>);</div><div class="line"><span class="built_in">console</span>.log(complementaryDNA);</div><div class="line"><span class="comment">// original     : ATCGGCTAGCTAGCGCTAGCTAGAACGAGT</span></div><div class="line"><span class="comment">// complementary: UAGCCGAUCGAUCGCGAUCGAUCUUGCUCA</span></div></pre></td></tr></table></figure></p>
+<h3 id="DNA-gt-AA"><a href="#DNA-gt-AA" class="headerlink" title="DNA -&gt; AA"></a>DNA -&gt; AA</h3><p>So we’ve done some Translation what about transcription?<br>this is where it gets good. there’s an enzyme in the body dedicated to that (I’m pretty sure it’s not the only one) transcription is the process of converting DNA into a protein, proteins are made of aminoacids so how do we go there?</p>
+<p>once we have our RNA sequence <code>UAGCCGAUCGAUCGCGAUCGAUCUUGCUCA</code> we have to look for a sequence that has a Start codon and a stop codon, what is a codon you may ask? it’s a group of three bases<br><code>UAG CCG AUC GAU CGC GAU CGA UCU UGC UCA</code> we have 10 codons here<br>now one thing the library does is to check for start and stop codons to try to accurately transcript the sequences<br>so let’s test our transcription<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> drptranslator = <span class="built_in">require</span>(<span class="string">'drptranslator/drptranslator'</span>);</div><div class="line"><span class="keyword">var</span> DNATranslator = drptranslator.DNATranslator;</div><div class="line"><span class="keyword">var</span> dnaTrans = <span class="keyword">new</span> DNATranslator();</div><div class="line"><span class="keyword">var</span> complementaryDNA = dnaTrans.transDNAtoRNA(<span class="string">"ATCGGCTAGCTAGCGCTAGCTAGAACGAGT"</span>);</div><div class="line"><span class="built_in">console</span>.log(complementaryDNA);</div><div class="line"><span class="comment">// original     : ATCGGCTAGCTAGCGCTAGCTAGAACGAGT</span></div><div class="line"><span class="comment">// complementary: STOP</span></div></pre></td></tr></table></figure></p>
+<p>Wait What!? it just outputs STOP? well when I put the sequence I didn’t realize that I was puting an STOP sequence First <code>UAG</code> so if you have a chain with multiple stops it will chop the sequence on the first stop, I will try to add the option to translate a sequence with multiple starts and stops later on, but right now that’s the default behavior.</p>
+<p>So let’s try again without our sequence but without the stop codon<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> drptranslator = <span class="built_in">require</span>(<span class="string">'drptranslator/drptranslator'</span>);</div><div class="line"><span class="keyword">var</span> DNATranslator = drptranslator.DNATranslator;</div><div class="line"><span class="keyword">var</span> dnaTrans = <span class="keyword">new</span> DNATranslator();</div><div class="line"><span class="keyword">var</span> complementaryDNA = dnaTrans.transDNAtoRNA(<span class="string">"GGCTAGCTAGCGCTAGCTAGAACGAGT"</span>);</div><div class="line"><span class="built_in">console</span>.log(complementaryDNA);</div><div class="line"><span class="comment">// original     : GGCTAGCTAGCGCTAGCTAGAACGAGT</span></div><div class="line"><span class="comment">// complementary: Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser</span></div></pre></td></tr></table></figure></p>
+<p>that looks better right?<br>the way the codons are identified is with a <a href="https://en.wikipedia.org/wiki/Genetic_code" target="_blank" rel="external"><strong>Genetic Code Table</strong> </a></p>
+<h3 id="RNA-gt"><a href="#RNA-gt" class="headerlink" title="RNA -&gt; ?"></a>RNA -&gt; ?</h3><p>Well RNATranslator class is used to let DNATranslator class to work, so If you want to translate or transcript RNA you can do it as well, but instead requiring a DNA sequence you need a RNA sequence<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> drptranslator = <span class="built_in">require</span>(<span class="string">'drptranslator/drptranslator'</span>);</div><div class="line"><span class="keyword">var</span> RNATranslator = drptranslator.RNATranslator;</div><div class="line"><span class="keyword">var</span> rnaTrans = <span class="keyword">new</span> RNATranslator();</div><div class="line"></div><div class="line"><span class="keyword">var</span> rnatodna = rnaTrans.transRNAtoDNA(<span class="string">"CCGAUCGAUCGCGAUCGAUCUUGCUCA"</span>);</div><div class="line"><span class="keyword">var</span> aaSeq = rnaTrans.transRNAtoAA(<span class="string">"CCGAUCGAUCGCGAUCGAUCUUGCUCA"</span>);</div><div class="line"><span class="built_in">console</span>.log(aaSeq, rnatodna);</div><div class="line"><span class="comment">// Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser</span></div><div class="line"><span class="comment">// GGCTAGCTAGCGCTAGCTAGAACGAGT</span></div></pre></td></tr></table></figure></p>
+<p>These are the most basic uses of the library, however there are ways to detect starts and stops, and so some other things with RNA, but I will document those in the repository.</p>
+<p>Please enjoy this library and if you want to contribute or have a suggestion, please raise an issue in the <a href="https://github.com/AngelMunoz/DRPTranslator" target="_blank" rel="external">repository</a></p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function() {
+                this.page.url = 'http://angelmunoz.github.io/2016/03/18/drptranslator/';
+                this.page.identifier = '2016/03/18/drptranslator/';
+            };
+            (function() {
+                var d = document,
+                    s = d.createElement('script');
+                s.src = '//tunaxorsblog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+        </noscript>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large teal">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect indigo" title="Regresar al inicio"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse green darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer brown darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="https://github.com/AngelMunoz" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://twitter.com/daniel_tuna" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://mx.linkedin.com/in/danieltuna" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+                
+                    <a class="social-link" href="aquacisterna" target="_blank">
+                        <i class="fa fa-2x fa-skype"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">Ligas</h5>
+                
+                    <a class="social-link" href="http://angelmunoz.github.io/" target="_blank">Blog</a>
+                
+                    <a class="social-link" href="https://github.com/AngelMunoz" target="_blank">GitHub</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright teal-link-context">
+        <div class="container">
+            © 2016 Angel D. Munoz, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('teal lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge teal"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-69125349-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
