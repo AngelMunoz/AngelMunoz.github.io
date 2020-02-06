@@ -1,19 +1,28 @@
 <html>
   <head>
     <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>
       Sails-Front-Typescript
     </title>
     <link rel="stylesheet" type="text/css" href="/css/bulma.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="News Feed"/>
+    <script src="/scripts/index.js"></script>
   </head>
   <body>
     <main class="hero is-fullheight is-dark is-bold">
       <div class="hero-head">
         <header class="navbar">
           <div class="container">
-            <div class="navbar-menu">
+            <div class="navbar-brand">
+              <div class="navbar-burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div class="navbar-menu" id="menusin">
               <div class="navbar-end">
                 <a class="navbar-item" href="/">
                   Tunaxor's Blog
@@ -26,16 +35,19 @@
           </div>
         </header>
       </div>
-      <div class="hero-body container is-column">
+      <div class="hero-body container is-column is-fluid">
         <h1 class="title">
           Tunaxor's Blog
         </h1>
         <article class="post">
-          <h1 class="post-title">
+          <h1 class="title">
             Sails-Front-Typescript
           </h1>
-          <div class="post-date">
+          <div class="is-size-5">
             1/12/2017
+            <h3 class="has-text-warning is-size-4">
+              Notice! This post seems to be at least 1 year old, the contents might not be accurate anymore.
+            </h3>
           </div>
           <div>
             <ul class="tags">
@@ -56,7 +68,7 @@
               </li>
             </ul>
           </div>
-          <section class="section">
+          <section class="content">
             <h1>Hello everyone!</h1>
 <p>If you have used <a href="https://sailsjs.com">Sailsjs</a> you may have used coffescript on your client-side javascript since any javascript/coffeescript that is put inside <code>assets</code> folder will be copied over to the <code>.tmp</code> dir used to serve static files of your sails application.
 The following configurations may apply to any [compile] to javascript language as long as it has a grunt plugin (there are also gulp hooks out there).</p>
@@ -198,7 +210,7 @@ if you need to move your front-end code to another standalone app, you can alway
         </article>
       </div>
       <div class="hero-foot">
-        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth is-large">
+        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth is-small">
           <div class="container">
             <ul>
               <li>

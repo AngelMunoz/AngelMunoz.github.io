@@ -1,8 +1,33 @@
+html, body {
+  width: 100%;
+}
 
 .is-column {
   flex-direction: column;
 }
 
+.hero.is-fullheight .hero-body, 
+.hero.is-fullheight-with-navbar .hero-body, 
+.hero.is-halfheight .hero-body {
+  align-items: unset;
+}
+
 .box-index {
   width: 100%;
+}
+
+.content strong {
+  color: #bf3747;
+}
+.content h1 ,
+.content h2 ,
+.content h3 ,
+.content h4 ,
+.content h5 ,
+.content h6  {
+  color: #bf3747;
+}
+
+pre {
+  margin: 1em 0;
 }
