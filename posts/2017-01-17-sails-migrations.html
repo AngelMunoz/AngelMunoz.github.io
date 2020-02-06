@@ -1,0 +1,328 @@
+<html>
+  <head>
+    <meta charSet="utf-8"/>
+    <title>
+      sails-migrations
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="News Feed"/>
+  </head>
+  <body>
+    <main class="hero is-fullheight is-dark is-bold">
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                  Tunaxor's Blog
+                </a>
+                <a class="navbar-item" href="/archive.html">
+                  Archive
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div class="hero-body container is-column">
+        <h1 class="title">
+          Tunaxor's Blog
+        </h1>
+        <article class="post">
+          <h1 class="post-title">
+            sails-migrations
+          </h1>
+          <div class="post-date">
+            1/17/2017
+          </div>
+          <div>
+            <ul class="tags">
+              <li class="tag is-light">
+                <a>
+                  sails
+                </a>
+              </li>
+              <li class="tag is-light">
+                <a>
+                  migrations
+                </a>
+              </li>
+            </ul>
+          </div>
+          <section class="section">
+            <h1>Hello Everyone!</h1>
+<p><a href="https://sailsjs.com">SailsJs</a> is indeed an awesome framework and I think sometimes it doesn't receive the love it should.
+However not everything is love, sails sometimes lacks some stuff when we intend to go production mode.
+Sails greately gives you a powerful ORM <a href="https://github.com/balderdashy/waterline">Waterline</a> which will do most of your stuff when needed and what is needed.
+if for some reason waterline doesn't offer you enough, you can always rely on the <a href="http://sailsjs.com/documentation/reference/waterline-orm/models/native">.native()</a> or <a href="http://sailsjs.com/documentation/reference/waterline-orm/models/query">.query()</a> methods
+which will accept mongo/sql statements.</p>
+<p>One of the things waterline has is automatic migrations lifting the switch on <code>config/models.js</code></p>
+<pre><code class="language-js">modules.export = {
+  migrate: 'alter'
+}
+</code></pre>
+<p><strong>However this setting is only development recommended</strong> because it is an experimental feature and
+sometimes if when <em>lifting</em> up the application something goes wrong it may fail and make you lose some data.
+Note that you should always have <strong>backups</strong> of your data.
+I learned this the bad way when our users table was deleted on a failed lifting (which we had backup for c: )
+This ends up leading to two options</p>
+<ul>
+<li>Manual SQL migrations</li>
+<li>Look for a integration which does migrations</li>
+</ul>
+<p>So I went looking for a solution to this and sadly thought there were no up to date hooks which could help on the case.</p>
+<p>Then I found <a href="https://github.com/building5/sails-db-migrate">sails-db-migrate</a> which is a hook that exposes grunt tasks to generate  and run <a href="https://github.com/db-migrate/node-db-migrate">node-db-migrate</a> migrations pulling the connection data from sails itself
+instead having to have a separate database.json file.</p>
+<p>This hook does what it promises, generates the files you needs and runs the migrations and supports MySQL, PostrgeSQL and MongoDB.
+using sails-mysql, sails-postgresql or sails-mongo depending on your setup.</p>
+<h2>Installation</h2>
+<p>You need a couple of things</p>
+<ul>
+<li>sails-db-migrate (the hook)</li>
+<li>pg # or mysql or mongodb</li>
+<li>db-migrate</li>
+<li>sails-{mysql|mongo|postgresql}</li>
+</ul>
+<p>if using mongodb you also need db-migrate-mongodb</p>
+<pre><code>npm install --save sails-db-migrate 
+npm install --save mongodb 
+npm install --save sails-mongo 
+npm install --save db-migrate@0.9.26 
+npm install --save db-migrate-mongodb
+</code></pre>
+<h2>Configuration</h2>
+<p>We will need a few things before doing migrations
+That's right we need to register these new tasks and supply settings to the hook</p>
+<pre><code>tasks
+|
+|--- config
+|     |
+|     ... a bunch of files ...
+|--- register
+|    |--- build.js
+|    |--- buildProd.js
+|    |--- compileAssets.js
+|    |--- default.js
+|    |--- linkAssets.js
+|    |--- linkAssetsBuild.js
+|    |--- linkAssetsBuildProd.js
+|    |--- prod.js
+|    |--- syncAssets.js
+|    |--- dbMigrate.js &lt;&lt;&lt; add this
+|
+|--- pipeline.js
+|--- README.md
+</code></pre>
+<p>and  inside <code>dbMigrate.js</code> add the following line</p>
+<pre><code class="language-js">module.exports = require('sails-db-migrate').gruntTasks
+</code></pre>
+<p>now inside  <code>config</code> directory we will add anotehr caled <code>migrations.js</code></p>
+<pre><code>config
+|
+|--- env
+|     |
+|     ... files ...
+|--- locales
+|     |
+|     ... files ...
+|--- blueprints.js
+|--- .
+|--- .
+|--- .
+|--- .
+|--- migrations.js &lt;&lt;&lt; add this
+</code></pre>
+<p>and add the following lines to it
+<strong>Note</strong> Connection name matches a field from <code>config/connections.js</code></p>
+<pre><code class="language-js">module.exports.migrations = {
+  connection: 'myMongoDbConnection',
+  table: 'sails_migrations',
+  migrationsDir: 'sails_migrations',
+  coffeeFile: false
+}
+</code></pre>
+<p>if you want to use a coffee file instead of a javascript one you can change that to true</p>
+<h2>Usage</h2>
+<p>After all of this has been done we can start generating our migration files.
+yo can find the <a href="https://github.com/db-migrate/node-db-migrate">node-db-migrate Docs</a> really useful and will most likely cover you.
+be sure to have grunt installed globally first and then type on your terminal/console</p>
+<pre><code>grunt db:migrate:create --name=add_collection_foos
+</code></pre>
+<p>this will output to the console</p>
+<pre><code>Running &quot;db:migrate:create&quot; (db:migrate) task
++ db-migrate create add_collection_foos --migrations-dir sails_migrations --table sails_migrations
+DATABASE_URL=mongodb://root:****@localhost:27017/portal_pruebas
+[INFO] Created migration at sails_migrations/20170114075021-add-collection-foos.js
+
+Done.
+</code></pre>
+<p>if you see it was pretty sraight forward
+let's check the content</p>
+<pre><code class="language-js">var dbm = global.dbm || require('db-migrate');
+var type = dbm.dataType;
+
+exports.up = function(db, callback) {
+  callback();
+};
+
+exports.down = function(db, callback) {
+  callback();
+};
+</code></pre>
+<p>so far so good but let's add some collections</p>
+<pre><code class="language-js">let dbm = global.dbm || require('db-migrate')
+let type = dbm.dataType
+exports.up = function(db, cb){
+    db.createCollection('users', function(){
+      db.createCollection('roles',cb)
+    }),
+}
+
+exports.down = function(db, cb){
+  db.dropCollection('users', function(){
+    db.dropCollection('roles', cb)
+  })
+}
+</code></pre>
+<p>this is great but to be honest my callback techniques are not so good, so I'd rather use the <code>async</code> package
+so let's add up</p>
+<pre><code class="language-js">let dbm = global.dbm || require('db-migrate')
+let type = dbm.dataType
+const async = require('async')
+exports.up = function(db, cb) {
+  async.series([
+    db.createCollection.bind(db, 'users'),
+    db.createCollection.bind(db, 'roles'),
+    db.addIndex.bind(db, 'users', 'users_index', {
+      email: 1
+    }, { unique: true }),
+    db.insert.bind(db, 'roles', [{
+      name: 'Administrator',
+      val: 'admin'
+    }, {
+      name: 'User',
+      val: 'user'
+    }])
+  ], cb)
+}
+exports.down = function(db, cb) {
+  async.series([
+    db.dropCollection.bind(db, 'users'),
+    db.dropCollection.bind(db, 'roles')
+  ], cb)
+}
+</code></pre>
+<p>as you can see we can add collections and indexes as well as insert data in each migration, running our migration is quite simple:</p>
+<pre><code>grunt db:migrate:up
+</code></pre>
+<pre><code>Running &quot;db:migrate:up&quot; (db:migrate) task
++ db-migrate up --migrations-dir sails_migrations --table sails_migrations
+DATABASE_URL=mongodb://root:****@localhost:27017/portal_pruebas
+[INFO] Processed migration 20170104201949-create-cUsers
+[INFO] Done
+</code></pre>
+<p>using mongo's cli tool we can check if our collections were added or not</p>
+<pre><code>~$ show dbs
+local           0.000GB
+portal_pruebas  0.000GB
+~$ use portal_pruebas
+switched to db portal_pruebas
+~$ show collections
+roles
+sails_migrations
+users
+</code></pre>
+<p>and also let' check for registries</p>
+<pre><code>~$ db.roles.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5879dbf69732e272196f00fd&quot;), &quot;name&quot; : &quot;Administrator&quot;, &quot;val&quot; : &quot;admin&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5879dbf69732e272196f00fe&quot;), &quot;name&quot; : &quot;User&quot;, &quot;val&quot; : &quot;user&quot; }
+~$
+</code></pre>
+<p>and in the same way we can revert our migration too</p>
+<pre><code>grunt db:migrate:down
+</code></pre>
+<pre><code>Running &quot;db:migrate:down&quot; (db:migrate) task
++ db-migrate down --migrations-dir sails_migrations --table sails_migrations
+DATABASE_URL=mongodb://root:****@localhost:27017/portal_pruebas
+[INFO] Defaulting to running 1 down migration.
+INFO] Processed migration 20170104201949-create-cUsers
+[INFO] Done
+</code></pre>
+<p>if you need to run more you can specify using
+<code>grunt db:migrate:down --count=5</code>
+this means that the last 5 migrations will be reverted
+and if you check your data inside mongo you will fine something is quite gone</p>
+<pre><code>~$ show dbs
+local           0.000GB
+portal_pruebas  0.000GB
+~$ use portal_pruebas
+switched to db portal_pruebas
+~$ show collections
+sails_migrations
+~$
+</code></pre>
+<p>that is of course because we droped collections in our down part of the migrations script</p>
+<h4>Hey it's all good but please I use mysql</h4>
+<p>change your database connection <code>connection:'theMysqlCollecion'</code> inside <code>config/migrations.js</code>
+to another connection name that should match a mysql connection in your <code>config/connections.js</code> file and use the SQL api.</p>
+<pre><code class="language-js">exports.up = function(db, cb) {
+ async.series([
+   db.createTable('pets', {
+    columns: {
+      id: { type: 'int', primaryKey: true, autoIncrement: true },
+      name: 'string'  // shorthand notation
+    },
+    ifNotExists: true
+  });
+ ], cb)
+};
+</code></pre>
+<p>you can find more info on the <a href="https://db-migrate.readthedocs.io/en/latest/API/SQL/">SQL API</a> and <a href="https://db-migrate.readthedocs.io/en/latest/API/NoSQL/">NoSQL API</a>
+you can do what you would expect from a migration, changing table/column/collection names
+insert data during migrations, drop tables/columns/collections.
+You should never abandon your database wherever it is, but sometimes time constraints or convenience calls for a speedier way to migrate your models</p>
+<p>In the use cases I've worked on, creating droping renaming and inserting has been the most I had to do.</p>
+<hr />
+<p>Well That's all for today I hope this works for you and takes off some worries about using sails in production
+when it comes to your data.
+Do you have any comments? please write them down or contact me in my <a href="https://twitter.com/daniel_tuna">twitter</a> See you around.</p>
+
+          </section>
+          <section id="disqus_thread">
+            <script src="/scripts/disqus.js"></script>
+          </section>
+        </article>
+      </div>
+      <div class="hero-foot">
+        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth is-large">
+          <div class="container">
+            <ul>
+              <li>
+                <a href="https://github.com/AngelMunoz/">
+                  Github
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/AngelMunoz/">
+                  Gitlab
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/daniel_tuna/">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/angeldmunoz/">
+                  Linked In
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </main>
+  </body>
+</html>

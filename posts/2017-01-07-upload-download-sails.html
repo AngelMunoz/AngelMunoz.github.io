@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <meta charSet="utf-8"/>
+    <title>
+      File Upload/Download in SailsJS
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="News Feed"/>
+  </head>
+  <body>
+    <main class="hero is-fullheight is-dark is-bold">
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                  Tunaxor's Blog
+                </a>
+                <a class="navbar-item" href="/archive.html">
+                  Archive
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div class="hero-body container is-column">
+        <h1 class="title">
+          Tunaxor's Blog
+        </h1>
+        <article class="post">
+          <h1 class="post-title">
+            File Upload/Download in SailsJS
+          </h1>
+          <div class="post-date">
+            1/7/2017
+          </div>
+          <div>
+            <ul class="tags">
+              <li class="tag is-light">
+                <a>
+                  sails
+                </a>
+              </li>
+            </ul>
+          </div>
+          <section class="section">
+            <h1>Hello</h1>
+<p>Hello everyone today I bring you a quick post on <a href="https://sailsjs.org">SailsJs</a> Upload/Download files <a href="https://sailsjs.org">SailsJs</a> is a really good nodejs framework, which allows you to quickly setup a RESTful API with a controller and a model (yes that easy), yet it allows you to do classic server-side rendering for websites including custom actions, views and whatever you could expect in a classic web development,Also! did I mention it has integrated Websocket support? via <a href="http://socket.io/">socket.io</a>
+It is a really powerful framework built on top of [express] if you haven't checked it you should just go and try!</p>
+<h3>Hands on!</h3>
+<p>This post assumes you know how to connect to a database (either mysql, postgre or mongo or just disk)
+and that you know how to access a route from the url
+Let's make a model and a controller for our Files <code>api/models/File.js</code></p>
+<pre><code class="language-js">/**
+ * File.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ */
+
+module.exports = {
+  tableName: 'files', // entirely optional
+  attributes: {
+    filename: {
+      type: 'string',
+      required: true
+    },
+    path: {
+      type: 'string',
+      required: true
+    }
+}
+
+</code></pre>
+<p>now let's create our controller
+<code>api/controllers</code> directory</p>
+<pre><code class="language-js">/**
+ * FileController
+ *
+ * @description :: Server-side logic for managing Files
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ */
+module.exports = {
+  
+}
+</code></pre>
+<p>We can either do it by hand or using <code>sails</code> command tools</p>
+<pre><code>$ sails generate api File
+</code></pre>
+<p>we now will add upload action</p>
+<pre><code class="language-js">/**
+ * FileController
+ *
+ * @description :: Server-side logic for managing Files
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ */
+module.exports = {
+  upload: function(req, res) {
+    res.json({message: 'yay!'})
+  }
+}
+</code></pre>
+<p>and if you go to the <code>/file/upload</code> url you will see the next message:</p>
+<pre><code class="language-json">  { &quot;message&quot;: &quot;yay!&quot; }
+</code></pre>
+<p>If everything is working well up to this point, let's add some logic there</p>
+<pre><code class="language-js">module.exports = {
+  upload: function(req, res) {
+    req.file('file') // this is the name of the file in your multipart form
+      .upload({
+        // optional
+        // dirname: [SOME PATH TO SAVE IN A CUSTOM DIRECTORY]
+      }, function(err, uploads) {
+        // try to always handle errors
+        if (err) { return res.serverError(err) }
+        // uploads is an array of files uploaded 
+        // so remember to expect an array object
+        if (uploads.length === 0) { return res.badRequest('No file was uploaded') }
+        // if file was uploaded create a new registry
+        // at this point the file is phisicaly available in the hard drive
+        File.create({
+          path: uploads[0].fd,
+          filename: uploads[0].filename,
+        }).exec(function(err, file) {
+          if (err) { return res.serverError(err) }
+          // if it was successful return the registry in the response
+          return res.json(file)
+        })
+      })
+  }
+}
+</code></pre>
+<p>if everything goes fine, you should be able to send files now and both the files are uploaded
+and the database registers where are those files</p>
+<p>now let's do some downloads; In the same controller create a new action</p>
+<pre><code class="language-js">module.exports = {
+  upload: function(req, res) {
+    // the logic for uploads
+  },
+  download: function(req, res) {
+    res.json({message: 'yay!'}) // let's first check that the route exists
+  }
+}
+</code></pre>
+<p>navigate to <code>/file/download</code> and you should see that json message
+since we were saving our uploads into our database we can just download our file
+searching it by id or by name, let's see</p>
+<pre><code class="language-js">module.exports = {
+  upload: function(req, res) {
+    // the logic for uploads
+  },
+  download: function(req, res) {
+    var fileID = req.param('id') 
+    // gets the id either in urlencode, body or url query
+    File
+      .findOne({ id: fileID })
+        .exec((err, file) =&gt; {
+          if (err) { return res.serverError(err) }
+          if (!file) { return res.notFound() }
+          // we use the res.download function to download the file 
+          // and send a ok response
+          res.download(file.path, function (err) {
+            if (err) {
+              return res.serverError(err)
+            } else {
+              return res.ok()
+            }
+        })
+      })
+  }
+}
+</code></pre>
+<p>So that's it! you can now upload and download files in sailsjs,
+sails is very flexible in the way it handles things so if you need to customize
+either the uploaded file's name you can pass it in the <code>upload({})</code> method
+as well as location.</p>
+<h3>Bonus</h3>
+<p>Let's register a custom route for our upload/download actions
+in your <code>config/routes.js</code> file you can add custom routes and also change urls for existing ones</p>
+<pre><code class="language-js">module.exports.routes = {
+  'post /fileuploader': 'FileController.upload',
+  'get /filedownloader/:id': 'FileController.download',
+}
+</code></pre>
+<p>the string <code>'get /filedownloader/:id': 'FileController.download',</code> tells sails to only accept <code>GET</code> requests to the <code>/filedownloader/:id</code> route, which is maped to the download action inside FileController.js file <code>:id</code> ends up being the id param which we will use to find our file registry.
+The same goes for <code>'post /fileuploader': 'FileController.upload',</code> which will only accept posts in the <code>/fileuploader</code> url
+maping our request to the upload action in FileController</p>
+<p>as you can see it's pretty straight forward upload and download files in <a href="https://sailsjs.org">SailsJS</a>
+I hope this helps anyone to understand file upload/download in sails; see you next time!
+Have any comments!? leave them below.</p>
+
+          </section>
+          <section id="disqus_thread">
+            <script src="/scripts/disqus.js"></script>
+          </section>
+        </article>
+      </div>
+      <div class="hero-foot">
+        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth is-large">
+          <div class="container">
+            <ul>
+              <li>
+                <a href="https://github.com/AngelMunoz/">
+                  Github
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/AngelMunoz/">
+                  Gitlab
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/daniel_tuna/">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/angeldmunoz/">
+                  Linked In
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </main>
+  </body>
+</html>

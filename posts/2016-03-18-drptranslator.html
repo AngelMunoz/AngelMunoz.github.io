@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <meta charSet="utf-8"/>
+    <title>
+      DRPTranslator
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="News Feed"/>
+  </head>
+  <body>
+    <main class="hero is-fullheight is-dark is-bold">
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                  Tunaxor's Blog
+                </a>
+                <a class="navbar-item" href="/archive.html">
+                  Archive
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div class="hero-body container is-column">
+        <h1 class="title">
+          Tunaxor's Blog
+        </h1>
+        <article class="post">
+          <h1 class="post-title">
+            DRPTranslator
+          </h1>
+          <div class="post-date">
+            3/18/2016
+          </div>
+          <div>
+            <ul class="tags">
+              <li class="tag is-light">
+                <a>
+                  Typescript
+                </a>
+              </li>
+              <li class="tag is-light">
+                <a>
+                  Javascript
+                </a>
+              </li>
+              <li class="tag is-light">
+                <a>
+                  Node
+                </a>
+              </li>
+            </ul>
+          </div>
+          <section class="section">
+            <h1>Hello everyone!</h1>
+<p>This time I come to you to give you a brief explanation of <a href="https://github.com/AngelMunoz/DRPTranslator">DRPTranslator</a>, available in
+the <a href="https://npmjs.com/package/drptranslator">npm registry</a>.</p>
+<p>This is the first library I've written in my developer's life it was quite interesting to develop and a great experience
+so, <em>What is this library for?</em> this is aimed at a entry level of genetics say convert DNA sequences into RNA sequences or Aminoacid sequences.
+this is based in the <a href="https://en.wikipedia.org/wiki/Central_dogma_of_molecular_biology">Central Dogma of Molecular Biology</a>.
+which basically explains how is possible for the nature to replicate itself an keep growing and evolving. when DNA replicates, there are certain phases Transcription and Translation, which is part of what this library is for.</p>
+<p>There are way more complex libraries for this in other languages, perhaps in Python or Java or even in F#, for the main purpose of this library is to help you build education software upon it, perhaps you have a friend or a colleague that are having or teaching this class and you find a handy way to use this library to build an app for them then Feel free to do so the library is MIT licensed so feel free to go.</p>
+<h2>Installation</h2>
+<p>Now with the good stuff to install this you can pull it directly from the npm registry save it as a dependency for your nodejs project!</p>
+<p><code>npm install --save drptranslator</code></p>
+<p>this library doesn't have any hard dependency on node compoents so if you want to try it on a browser app, you can always use browserify or webpack.</p>
+<h3>DNA -&gt; DNA</h3>
+<p>If you have a DNA sequence that you want to get the complementary chain this is for you!</p>
+<pre><code class="language-javascript">// DNA Sequence
+// ATCGGCTAGCTAGCGCTAGCTAGAACGAGT
+var drptranslator = require('drptranslator/drptranslator');
+var DNATranslator = drptranslator.DNATranslator;
+var dnaTrans = new DNATranslator();
+var complementaryDNA = dnaTrans.transDNAtoDNA(&quot;ATCGGCTAGCTAGCGCTAGCTAGAACGAGT&quot;);
+console.log(complementaryDNA);
+// original     : ATCGGCTAGCTAGCGCTAGCTAGAACGAGT
+// complementary: TAGCCGATCGATCGCGATCGATCTTGCTCA
+</code></pre>
+<h3>DNA -&gt; RNA</h3>
+<p>Now, let's use the same DNA sequence to get the RNA complementary sequence which is called Translation in the Central Dogma of Molecular Biology</p>
+<pre><code class="language-javascript">var drptranslator = require('drptranslator/drptranslator');
+var DNATranslator = drptranslator.DNATranslator;
+var dnaTrans = new DNATranslator();
+var complementaryDNA = dnaTrans.transDNAtoRNA(&quot;ATCGGCTAGCTAGCGCTAGCTAGAACGAGT&quot;);
+console.log(complementaryDNA);
+// original     : ATCGGCTAGCTAGCGCTAGCTAGAACGAGT
+// complementary: UAGCCGAUCGAUCGCGAUCGAUCUUGCUCA
+</code></pre>
+<h3>DNA -&gt; AA</h3>
+<p>So we've done some Translation what about transcription?
+this is where it gets good. there's an enzyme in the body dedicated to that (I'm pretty sure it's not the only one) transcription is the process of converting DNA into a protein, proteins are made of aminoacids so how do we go there?</p>
+<p>once we have our RNA sequence <code>UAGCCGAUCGAUCGCGAUCGAUCUUGCUCA</code> we have to look for a sequence that has a Start codon and a stop codon, what is a codon you may ask? it's a group of three bases
+<code>UAG CCG AUC GAU CGC GAU CGA UCU UGC UCA</code> we have 10 codons here
+now one thing the library does is to check for start and stop codons to try to accurately transcript the sequences
+so let's test our transcription</p>
+<pre><code class="language-javascript">var drptranslator = require('drptranslator/drptranslator');
+var DNATranslator = drptranslator.DNATranslator;
+var dnaTrans = new DNATranslator();
+var complementaryDNA = dnaTrans.transDNAtoRNA(&quot;ATCGGCTAGCTAGCGCTAGCTAGAACGAGT&quot;);
+console.log(complementaryDNA);
+// original     : ATCGGCTAGCTAGCGCTAGCTAGAACGAGT
+// complementary: STOP
+</code></pre>
+<p>Wait What!? it just outputs STOP? well when I put the sequence I didn't realize that I was puting an STOP sequence First <code>UAG</code> so if you have a chain with multiple stops it will chop the sequence on the first stop, I will try to add the option to translate a sequence with multiple starts and stops later on, but right now that's the default behavior.</p>
+<p>So let's try again without our sequence but without the stop codon</p>
+<pre><code class="language-javascript">var drptranslator = require('drptranslator/drptranslator');
+var DNATranslator = drptranslator.DNATranslator;
+var dnaTrans = new DNATranslator();
+var complementaryDNA = dnaTrans.transDNAtoRNA(&quot;GGCTAGCTAGCGCTAGCTAGAACGAGT&quot;);
+console.log(complementaryDNA);
+// original     : GGCTAGCTAGCGCTAGCTAGAACGAGT
+// complementary: Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser
+</code></pre>
+<p>that looks better right?
+the way the codons are identified is with a <a href="https://en.wikipedia.org/wiki/Genetic_code"><strong>Genetic Code Table</strong> </a></p>
+<h3>RNA -&gt; ?</h3>
+<p>Well RNATranslator class is used to let DNATranslator class to work, so If you want to translate or transcript RNA you can do it as well, but instead requiring a DNA sequence you need a RNA sequence</p>
+<pre><code class="language-javascript">var drptranslator = require('drptranslator/drptranslator');
+var RNATranslator = drptranslator.RNATranslator;
+var rnaTrans = new RNATranslator();
+
+var rnatodna = rnaTrans.transRNAtoDNA(&quot;CCGAUCGAUCGCGAUCGAUCUUGCUCA&quot;);
+var aaSeq = rnaTrans.transRNAtoAA(&quot;CCGAUCGAUCGCGAUCGAUCUUGCUCA&quot;);
+console.log(aaSeq, rnatodna);
+// Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser
+// GGCTAGCTAGCGCTAGCTAGAACGAGT
+</code></pre>
+<p>These are the most basic uses of the library, however there are ways to detect starts and stops, and so some other things with RNA, but I will document those in the repository.</p>
+<p>Please enjoy this library and if you want to contribute or have a suggestion, please raise an issue in the <a href="https://github.com/AngelMunoz/DRPTranslator">repository</a></p>
+
+          </section>
+          <section id="disqus_thread">
+            <script src="/scripts/disqus.js"></script>
+          </section>
+        </article>
+      </div>
+      <div class="hero-foot">
+        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth is-large">
+          <div class="container">
+            <ul>
+              <li>
+                <a href="https://github.com/AngelMunoz/">
+                  Github
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/AngelMunoz/">
+                  Gitlab
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/daniel_tuna/">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/angeldmunoz/">
+                  Linked In
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </main>
+  </body>
+</html>

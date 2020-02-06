@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <meta charSet="utf-8"/>
+    <title>
+      Sails-Front-Typescript
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="News Feed"/>
+  </head>
+  <body>
+    <main class="hero is-fullheight is-dark is-bold">
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                  Tunaxor's Blog
+                </a>
+                <a class="navbar-item" href="/archive.html">
+                  Archive
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div class="hero-body container is-column">
+        <h1 class="title">
+          Tunaxor's Blog
+        </h1>
+        <article class="post">
+          <h1 class="post-title">
+            Sails-Front-Typescript
+          </h1>
+          <div class="post-date">
+            1/12/2017
+          </div>
+          <div>
+            <ul class="tags">
+              <li class="tag is-light">
+                <a>
+                  typescript
+                </a>
+              </li>
+              <li class="tag is-light">
+                <a>
+                  sails
+                </a>
+              </li>
+              <li class="tag is-light">
+                <a>
+                  node
+                </a>
+              </li>
+            </ul>
+          </div>
+          <section class="section">
+            <h1>Hello everyone!</h1>
+<p>If you have used <a href="https://sailsjs.com">Sailsjs</a> you may have used coffescript on your client-side javascript since any javascript/coffeescript that is put inside <code>assets</code> folder will be copied over to the <code>.tmp</code> dir used to serve static files of your sails application.
+The following configurations may apply to any [compile] to javascript language as long as it has a grunt plugin (there are also gulp hooks out there).</p>
+<p>The basic idea is to register new tasks and slightly modificate some other tasks to allow the automated grunt tasks do the job for us.</p>
+<h3>Installation</h3>
+<p>we start on the basics</p>
+<ul>
+<li><code>npm i -g typescript typings</code></li>
+<li><code>npm i grunt-ts@~5.5.1</code></li>
+</ul>
+<p>after all is installed we'll go to our  <code>tasks</code> folder</p>
+<h3>configurations</h3>
+<p>Inside the <code>tasks</code> directory we will find both <code>config</code> and <code>register</code></p>
+<pre><code>tasks
+|
+|--- config
+|    |--- clean.js
+|    |--- concat.js
+|    |--- copy.js
+|    |--- cssmin.js
+|    |--- less.js
+|    |--- sails-linker.js
+|    |--- sync.js
+|    |--- uglify.js
+|    |--- watch.js
+|    |--- typescript.js &lt;&lt;&lt; add this
+|
+|--- register
+|    |--- build.js
+|    |--- buildProd.js
+|    |--- compileAssets.js
+|    |--- default.js
+|    |--- linkAssets.js
+|    |--- linkAssetsBuild.js
+|    |--- linkAssetsBuildProd.js
+|    |--- prod.js
+|    |--- syncAssets.js
+|
+|--- pipeline.js
+|--- README.md
+</code></pre>
+<p>Let's beggin looking at <code>typescript.js</code></p>
+<pre><code class="language-js">module.exports = function(grunt){
+  grunt.config.set('ts', {
+    dev: {
+      tsconfig: 'assets/tsconfig.json'
+    }
+  })
+  grunt.loadNpmTasks('grunt-ts')
+}
+</code></pre>
+<p>pretty simple right?
+but we have to change a few files too
+<code>copy.js</code></p>
+<pre><code class="language-js">...
+dev: {
+      files: [{
+        expand: true,
+        cwd: './assets',
+        src: ['**/*.!(less|coffee|ts|d.*|json)'],
+        dest: '.tmp/public'
+      }]
+    },
+...
+</code></pre>
+<p><code>sync.js</code></p>
+<pre><code class="language-js">...
+dev: {
+      files: [{
+        expand: true,
+        cwd: './assets',
+        src: ['**/*.!(less|coffee|ts|d.*|json)'],
+        dest: '.tmp/public'
+      }]
+    },
+...
+</code></pre>
+<p>I've added ts, d.* and json to the regex so we don't pass our typings and typings.json files later on.</p>
+<p>now inside <code>compileAssets.js</code> we also make a slight modification</p>
+<pre><code class="language-js">module.exports = function(grunt){
+  grunt.registerTask('compileAssets', [
+    'clean:dev',
+    'jst:dev',
+    'less:dev',
+    'copy:dev',
+    'coffee:dev',
+    'ts'
+  ]);
+};
+</code></pre>
+<p>and now in <code>syncAssets.js</code></p>
+<pre><code class="language-js">module.exports = function (grunt) {
+  grunt.registerTask('syncAssets', [
+    'jst:dev',
+    'less:dev',
+    'sync:dev',
+    'coffee:dev'
+    'ts'
+  ]);
+};
+</code></pre>
+<h3>Assets!</h3>
+<p>now inside assets you can put any <code>.ts</code> file and sails will compile it on changes made to that file.
+in case you are wondering which <code>tsconfig.json</code> use:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es5&quot;,
+    &quot;module&quot;: &quot;system&quot;,
+    &quot;charset&quot;: &quot;utf-8&quot;,
+    &quot;sourceMap&quot;: false,
+    &quot;outFile&quot;: &quot;../.tmp/public/js/app.js&quot;
+  },
+  &quot;include&quot;: [
+    &quot;src/**/*&quot;
+  ],
+  &quot;exclude&quot;: [
+    &quot;node_modules&quot;,
+    &quot;bower_components&quot;,
+    &quot;typings&quot;
+  ],
+  &quot;compileOnSave&quot;: false
+}
+</code></pre>
+<p>remember that you can completely modificate and adjust grunt tasks and typescript config to your like and needs
+if you don't want to use typescript, but you want to use those shiny ESNext features you can also setup Babel
+in a similar way, just add your configuration task and register it in some part of the workflow.
+also if you don't need templates, less files or coffeescript files, you can always disable those tasks to improve compilation times for
+other kinds of tasks that you have setup.
+If everythin went well, next time you <code>sails lift</code> your app you should be able to compile typescript files for your frontend in your sails apps</p>
+<p>This is one of the things I like about <a href="https://sailsjs.com">Sailsjs</a>, it is so configurable and allows you to addapt it to your way to work and lets you build up stable and sizable apps in short time
+if you need to move your front-end code to another standalone app, you can always swap it out from your assets.</p>
+<hr />
+<p>That's all for today! I hope this works out for you! if you have any doubts or comments please comment below or on <a href="https://twitter.com/daniel_tuna">twitter</a> :)</p>
+
+          </section>
+          <section id="disqus_thread">
+            <script src="/scripts/disqus.js"></script>
+          </section>
+        </article>
+      </div>
+      <div class="hero-foot">
+        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth is-large">
+          <div class="container">
+            <ul>
+              <li>
+                <a href="https://github.com/AngelMunoz/">
+                  Github
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/AngelMunoz/">
+                  Gitlab
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/daniel_tuna/">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/angeldmunoz/">
+                  Linked In
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </main>
+  </body>
+</html>
